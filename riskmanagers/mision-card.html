@@ -1,0 +1,302 @@
+<style>
+    /* Namespace específico para nuestro componente */
+    .riskmanagers-mision-vision {
+        --primary-color: #e2803e;
+        --secondary-color: #3c3c3c;
+    }
+
+    .riskmanagers-mision-vision .cards-wrapper {
+        display: flex;
+        gap: 60px;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+        margin: 40px 0;
+        flex-wrap: wrap;
+        flex-direction: row;
+        padding: 0;
+    }
+    
+    .riskmanagers-mision-vision .mision-container,
+    .riskmanagers-mision-vision .vision-container {
+        position: relative;
+        max-width: 600px;
+        min-width: 600px;
+        aspect-ratio: 16/9;
+        margin-bottom: 40px;
+        flex: 1 1 400px;
+        box-sizing: border-box;
+        overflow: visible;
+        transform-origin: center center;
+    }
+    
+    .riskmanagers-mision-vision .mision-bg,
+    .riskmanagers-mision-vision .vision-bg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 300px;
+        height: 310px;
+        background: var(--secondary-color);
+        border-top-right-radius: 150px;
+        border-bottom-left-radius: 40px;
+        border-top-left-radius: 40px;
+        border-bottom-right-radius: 40px;
+        z-index: 0;
+    }
+    
+    .riskmanagers-mision-vision .mision-card,
+    .riskmanagers-mision-vision .vision-card {
+        position: absolute;
+        left: 75px;
+        top: 45px;
+        width: calc(100% - 90px);
+        max-width: 100%;
+        min-width: 200px;
+        min-height: 220px;
+        height: auto;
+        background-color: var(--primary-color);
+        border-radius: 24px;
+        display: flex;
+        align-items: center;
+        padding: 30px 40px 30px 90px;
+        z-index: 2;
+        box-sizing: border-box;
+    }
+    
+    .riskmanagers-mision-vision .mision-icon,
+    .riskmanagers-mision-vision .vision-icon {
+        position: absolute;
+        left: -45px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 90px;
+        aspect-ratio: 1/1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 3;
+    }
+    
+    .riskmanagers-mision-vision .mision-icon-outer,
+    .riskmanagers-mision-vision .vision-icon-outer {
+        width: 100%;
+        height: 100%;
+        background: var(--primary-color);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .riskmanagers-mision-vision .mision-icon-inner,
+    .riskmanagers-mision-vision .vision-icon-inner {
+        width: 85%;
+        height: 85%;
+        background: var(--secondary-color);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .riskmanagers-mision-vision .mision-icon-inner img,
+    .riskmanagers-mision-vision .vision-icon-inner img {
+        width: 60%;
+        height: 60%;
+        display: block;
+    }
+    
+    .riskmanagers-mision-vision .mision-content,
+    .riskmanagers-mision-vision .vision-content {
+        width: 100%;
+        color: white !important;
+        max-height: none;
+    }
+    
+    .riskmanagers-mision-vision .mision-title,
+    .riskmanagers-mision-vision .vision-title {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: white !important;
+    }
+    
+    .riskmanagers-mision-vision .mision-text,
+    .riskmanagers-mision-vision .vision-text {
+        font-size: 1.1rem;
+        line-height: 1.4;
+        color: white !important;
+        margin: 0;
+    }
+
+    /* Icono de target (dibujo SVG) */
+    .target-icon {
+        width: 60%;
+        height: 60%;
+        stroke: white;
+        fill: none;
+        stroke-width: 2.5;
+    }
+
+    /* Media queries con namespace */
+    @media (max-width: 1300px) {
+        .riskmanagers-mision-vision .cards-wrapper {
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .riskmanagers-mision-vision .mision-container,
+        .riskmanagers-mision-vision .vision-container {
+            width: 90%;
+            min-width: 260px;
+            transform: scale(0.9);
+            margin: 0 auto;
+            height: auto;
+        }
+        
+        .riskmanagers-mision-vision .mision-card,
+        .riskmanagers-mision-vision .vision-card {
+            width: calc(100% - 110px);
+            min-width: 180px;
+            left: 90px;
+            height: auto;
+        }
+    }
+    
+    @media (max-width: 600px) {
+        .riskmanagers-mision-vision .cards-wrapper {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            box-sizing: border-box;
+            gap: 20px;
+        }
+        
+        .riskmanagers-mision-vision .mision-container,
+        .riskmanagers-mision-vision .vision-container {
+            max-width: 95%;
+            min-width: 0;
+            width: 95%;
+            margin: 0 auto;
+            display: block;
+            position: relative;
+            aspect-ratio: unset;
+            height: 160px !important;
+            box-sizing: border-box;
+            padding: 0;
+        }
+        
+        .riskmanagers-mision-vision .mision-bg,
+        .riskmanagers-mision-vision .vision-bg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 220px;
+            height: 100%;
+            margin: 0;
+            background: var(--secondary-color);
+            border-top-right-radius: 100px;
+            border-bottom-left-radius: 30px;
+            border-top-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+        
+        .riskmanagers-mision-vision .mision-card,
+        .riskmanagers-mision-vision .vision-card {
+            position: absolute;
+            left: 40px;
+            top: 20px;
+            width: calc(100% - 35px);
+            min-width: 0;
+            max-width: calc(100% - 35px);
+            height: calc(100% - 40px);
+            background-color: var(--primary-color);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            padding: 20px 20px 20px 60px;
+        }
+        
+        .riskmanagers-mision-vision .mision-icon,
+        .riskmanagers-mision-vision .vision-icon {
+            position: absolute;
+            left: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+        }
+        
+        .riskmanagers-mision-vision .mision-title,
+        .riskmanagers-mision-vision .vision-title {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: white !important;
+        }
+        
+        .riskmanagers-mision-vision .mision-content,
+        .riskmanagers-mision-vision .vision-content {
+            width: 100%;
+            max-height: none;
+            overflow-y: visible;
+        }
+    }
+    
+    /* Solo para debug - descomentar para ver bordes */
+    /* .riskmanagers-mision-vision .cards-wrapper { border: 2px dashed red; }
+    .riskmanagers-mision-vision .mision-container, 
+    .riskmanagers-mision-vision .vision-container { border: 2px dashed blue; }
+    .riskmanagers-mision-vision .mision-bg, 
+    .riskmanagers-mision-vision .vision-bg { border: 2px dashed green; }
+    .riskmanagers-mision-vision .mision-card, 
+    .riskmanagers-mision-vision .vision-card { border: 2px dashed yellow; }
+    .riskmanagers-mision-vision .mision-icon, 
+    .riskmanagers-mision-vision .vision-icon { border: 2px dashed purple; } */
+</style>
+
+<div class="riskmanagers-mision-vision">
+    <div class="cards-wrapper">
+        <div class="mision-container">
+            <div class="mision-bg"></div>
+            <div class="mision-card">
+                <div class="mision-icon">
+                    <div class="mision-icon-outer">
+                        <div class="mision-icon-inner">
+                            <img src="https://riskmanager.instawp.xyz/wp-content/uploads/2025/05/Vector.svg" alt="Misión" />
+                        </div>
+                    </div>
+                </div>
+                <div class="mision-content">
+                    <h2 class="mision-title">Misión</h2>
+                    <p class="mision-text">
+                        Cubrir los riesgos personales y patrimoniales de nuestros asegurados como su socio estratégico, 
+                        que les brinda la mejor solución de cobertura en seguros, análisis de riesgos y en proteccionismos y 
+                        desarrollo de su factor humano, velando en todo momento por sus intereses ya que ellos son 
+                        nuestra razón de ser.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="vision-container">
+            <div class="vision-bg"></div>
+            <div class="vision-card">
+                <div class="vision-icon">
+                    <div class="vision-icon-outer">
+                        <div class="vision-icon-inner">
+                            <img src="https://riskmanager.instawp.xyz/wp-content/uploads/2025/05/Group.svg" alt="Visión" />
+                        </div>
+                    </div>
+                </div>
+                <div class="vision-content">
+                    <h2 class="vision-title">Visión</h2>
+                    <p class="vision-text">
+                        Nos queremos proyectar como la mejor empresa de intermediación de seguros en la República Dominicana de una manera transparente, ética y eficaz, de lado de nuestros colaboradores y proveedores.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

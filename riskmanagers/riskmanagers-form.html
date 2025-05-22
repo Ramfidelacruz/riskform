@@ -1,0 +1,224 @@
+<style>
+    .custom-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    border: none;
+    border-radius: 35px;
+    background: none;
+    box-shadow: none;
+}
+.custom-form-container input[type="text"],
+.custom-form-container input[type="email"],
+.custom-form-container input[type="tel"],
+.custom-form-container select {
+    width: 100%;
+    padding: 10px 25px;
+    margin-bottom: 10px;
+    border: 2px solid #ff9933;
+    border-radius: 999px !important;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    font-size: 18px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+.custom-form-container input[type="text"]:focus,
+.custom-form-container input[type="email"]:focus,
+.custom-form-container input[type="tel"]:focus,
+.custom-form-container select:focus {
+    border-color: #ffae42;
+    background: rgba(0,0,0,0.7);
+}
+.custom-form-container input[type="text"]::placeholder,
+.custom-form-container input[type="email"]::placeholder,
+.custom-form-container input[type="tel"]::placeholder {
+    color: #ccc;
+    opacity: 1;
+}
+.form-select {
+    color: #fff;
+    background: rgba(0,0,0,0.5);
+}
+.btn.btn-submit {
+    background: #ff9933;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 12px 50px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 10px;
+}
+.btn.btn-submit:hover {
+    background: #ffae42;
+}
+.button-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+body {
+    background: url('../assets/bg-blur.jpg') no-repeat center center fixed;
+    background-size: cover;
+} 
+/* Estilos para el ícono del dropdown */
+.form-select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23ffffff' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px 12px;
+    padding-right: 40px;
+}
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    color: #ff4444;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+}
+
+.form-group.error input,
+.form-group.error select {
+    border-color: #ff4444;
+}
+
+.form-group.error .error-message {
+    display: block;
+}
+</style>
+<div class="custom-form-container">
+    <form id="riskmanagers-form" novalidate>
+        <div class="form-group">
+            <input type="text" class="form-input" placeholder="Nombre" name="nombre" required>
+            <div class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-input" placeholder="Apellido" name="apellido" required>
+            <div class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-input" placeholder="Correo" name="correo" required>
+            <div class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <input type="tel" class="form-input" placeholder="Teléfono" name="telefono" required pattern="[0-9]{10}">
+            <div class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <select class="form-select" name="servicio" required>
+                <option value="">Servicio a Solicitar</option>
+                <option value="riesgos_comerciales">Riesgos comerciales, corporativos y financieros</option>
+                <option value="seguros_industriales">Seguros industriales y de ingeniería</option>
+                <option value="seguros_personas">Seguros Personas</option>
+                <option value="corretaje">Corretaje de reaseguro</option>
+                <option value="riesgos_generales">Riesgos Generales</option>
+                <option value="automovil">Automóvil</option>
+                <option value="reclamaciones">Reclamaciones</option>
+            </select>
+            <div class="error-message"></div>
+        </div>
+        <div class="form-group" style="margin-top: 10px;">
+            <!-- <label style="color: #fff; display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                <input type="checkbox" name="modo_prueba" style="width: auto; margin: 0;">
+                <span>Activar modo prueba (enviar a correo de prueba) </span>
+            </label> -->
+
+            <!-- este es un comentario -->
+        </div>
+        <div class="button-container">
+            <button type="submit" class="btn btn-submit">Enviar</button>
+        </div>
+    </form>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('riskmanagers-form');
+    
+    // Función para validar el formulario
+    function validateForm() {
+        let isValid = true;
+        const formGroups = form.querySelectorAll('.form-group');
+        
+        formGroups.forEach(group => {
+            const input = group.querySelector('input, select');
+            const errorMessage = group.querySelector('.error-message');
+            
+            if (!input.value.trim()) {
+                group.classList.add('error');
+                errorMessage.textContent = 'Este campo es requerido';
+                isValid = false;
+            } else if (input.type === 'email' && !isValidEmail(input.value)) {
+                group.classList.add('error');
+                errorMessage.textContent = 'Por favor ingrese un correo válido';
+                isValid = false;
+            } else if (input.type === 'tel' && !isValidPhone(input.value)) {
+                group.classList.add('error');
+                errorMessage.textContent = 'Por favor ingrese un número de teléfono válido';
+                isValid = false;
+            } else {
+                group.classList.remove('error');
+            }
+        });
+        
+        return isValid;
+    }
+    
+    // Función para validar email
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+    
+    // Función para validar teléfono
+    function isValidPhone(phone) {
+        return /^[0-9]{10}$/.test(phone);
+    }
+    
+    form.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        if (!validateForm()) {
+            return;
+        }
+        
+        const formData = new FormData(form);
+        
+        try {
+            const response = await fetch('/wp-json/riskmanagers/v1/enviar', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                alert(data.message);
+                form.reset();
+            } else {
+                throw new Error(data.message);
+            }
+        } catch (error) {
+            alert('Hubo un error al enviar el formulario. Por favor, intente nuevamente.');
+            console.error('Error:', error);
+        }
+    });
+    
+    // Limpiar errores al escribir
+    form.querySelectorAll('input, select').forEach(input => {
+        input.addEventListener('input', function() {
+            this.closest('.form-group').classList.remove('error');
+        });
+    });
+});
+</script>
