@@ -172,7 +172,7 @@
             margin: 0;
             width: 100%;
             box-sizing: border-box;
-            gap: 20px;
+            gap: 40px;
         }
         
         .riskmanagers-mision-vision .mision-container,
@@ -184,7 +184,7 @@
             display: block;
             position: relative;
             aspect-ratio: unset;
-            height: 160px !important;
+            min-height: 380px !important;
             box-sizing: border-box;
             padding: 0;
         }
@@ -195,7 +195,7 @@
             left: 0;
             top: 0;
             width: 220px;
-            height: 100%;
+            height: 100% !important;
             margin: 0;
             background: var(--secondary-color);
             border-top-right-radius: 100px;
@@ -212,12 +212,12 @@
             width: calc(100% - 35px);
             min-width: 0;
             max-width: calc(100% - 35px);
-            height: calc(100% - 40px);
+            height: calc(100% - 40px) !important;
             background-color: var(--primary-color);
             border-radius: 18px;
             display: flex;
             align-items: center;
-            padding: 20px 20px 20px 60px;
+            padding: 20px 20px 20px 45px;
         }
         
         .riskmanagers-mision-vision .mision-icon,
@@ -230,18 +230,28 @@
             height: 50px;
         }
         
-        .riskmanagers-mision-vision .mision-title,
-        .riskmanagers-mision-vision .vision-title {
-            font-size: 1.2rem;
-            margin-bottom: 8px;
-            color: white !important;
-        }
-        
         .riskmanagers-mision-vision .mision-content,
         .riskmanagers-mision-vision .vision-content {
             width: 100%;
-            max-height: none;
-            overflow-y: visible;
+            height: 100% !important;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .riskmanagers-mision-vision .mision-title,
+        .riskmanagers-mision-vision .vision-title {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: white !important;
+        }
+        
+        .riskmanagers-mision-vision .mision-text,
+        .riskmanagers-mision-vision .vision-text {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin: 0;
+            flex: 1;
         }
     }
     
